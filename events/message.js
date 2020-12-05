@@ -21,6 +21,6 @@ module.exports = async (client, message) => {
     
         await checkContent(newMesssage);
     } catch (error) {
-        console.log('ERROR - message.js', error);
+        console.error('ERROR - message.js', error);
     }
 };
