@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../handlers/db');
 
-module.exports.Message = sequelize.define('message', {
+module.exports.Guild = sequelize.define('guild', {
     id: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -11,24 +11,17 @@ module.exports.Message = sequelize.define('message', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    authorId: {
+    commandChannelId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: null,
     },
-    authorMessageId: {
+    logChannelId: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: null,
     },
-    channelId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    content: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    isEdited: {
+    toxicityClassifier: {
         type: DataTypes.BOOLEAN,
+        defaultValue: true,
         allowNull: false,
     },
     createdAt: {

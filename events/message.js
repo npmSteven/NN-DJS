@@ -1,7 +1,7 @@
 const { v4 } = require('uuid');
 
-const Message = require('../models/Message');
-const { checkContent } = require('../handlers/textDetection');
+const { Message } = require('../models/Message');
+const { classifyContent } = require('../handlers/toxicityClassifier');
 
 module.exports = async (client, message) => {
     // Check if bot send a message
@@ -19,7 +19,7 @@ module.exports = async (client, message) => {
             createdAt: `${message.createdAt}`,
         });
     
-        await checkContent(newMesssage);
+        await classifyContent(newMesssage);
     } catch (error) {
         console.error('ERROR - message.js', error);
     }

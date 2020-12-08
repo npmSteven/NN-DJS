@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const fs = require('fs').promises;
 const Enmap = require('enmap');
-require("@tensorflow/tfjs");
 require("@tensorflow/tfjs-node");
 
 const { connectDb, syncDb } = require('./handlers/db');

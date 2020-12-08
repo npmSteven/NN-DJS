@@ -18,6 +18,7 @@
     "@tensorflow/tfjs-node": "^2.7.0",
     "discord.js": "^12.5.1",
     "enmap": "^5.8.2",
+    "mysql2": "^2.2.5",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
     "uuid": "^8.3.1"

@@ -1,34 +1,46 @@
 const { DataTypes } = require('sequelize');
 const { sequelize } = require('../handlers/db');
 
-module.exports.Message = sequelize.define('message', {
+module.exports.ToxicUser = sequelize.define('toxicUser', {
     id: {
         type: DataTypes.STRING,
         allowNull: false,
         primaryKey: true,
     },
+    userId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     guildId: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    authorId: {
-        type: DataTypes.STRING,
+    identityAttack: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    authorMessageId: {
-        type: DataTypes.STRING,
+    insult: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    channelId: {
-        type: DataTypes.STRING,
+    obscene: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    content: {
-        type: DataTypes.STRING,
+    severeToxicity: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
-    isEdited: {
-        type: DataTypes.BOOLEAN,
+    sexualExplicit: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    threat: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    toxicity: {
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     createdAt: {

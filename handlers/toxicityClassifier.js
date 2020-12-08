@@ -1,18 +1,10 @@
 const { v4 } = require('uuid');
 const toxicity = require('@tensorflow-models/toxicity');
 
-const ToxicMessage = require('../models/ToxicMessage');
+const { ToxicMessage } = require('../models/ToxicMessage');
 const config = require('../config');
 
-let model = null;
-
-const setModel = async () => {
-    model = await toxicity.load(config.toxicityThreshold);
-}
-
-setModel();
-
-module.exports.checkContent = async (message) => {
+module.exports.classifyContent = async (message) => {
     try {
         const predictions = await classify(message.content);
 
@@ -37,13 +29,13 @@ module.exports.checkContent = async (message) => {
             await ToxicMessage.create({
                 id: v4(),
                 messageId: message.id,
-                identityAttack: identityAttack.match || false,
-                insult: insult.match  || false,
-                obscene: obscene.match  || false,
-                severeToxicity: severeToxicity.match  || false,
-                sexualExplicit: sexualExplicit.match  || false,
-                threat: threat.match  || false,
-                toxicity: toxicity.match  || false,
+                identityAttack: identityAttack.match,
+                insult: insult.match,
+                obscene: obscene.match,
+                severeToxicity: severeToxicity.match,
+                sexualExplicit: sexualExplicit.match,
+                threat: threat.match,
+                toxicity: toxicity.match,
                 createdAt: message.createdAt,
             });
         }
@@ -55,6 +47,8 @@ module.exports.checkContent = async (message) => {
 // Check toxicity of message
 const classify = async (content) => {
     try {
+        // Get threshold from guilds table
+        const model = await toxicity.load(0.2);
         const predictions = await model.classify(content);
         return predictions;
     } catch (error) {
