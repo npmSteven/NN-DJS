@@ -13,7 +13,7 @@ if (db.type === 'mysql') {
     sequelize = new Sequelize({
         ...options,
         dialect: 'sqlite',
-        storage: './database/db.sqlite',
+        storage: '../db.sqlite',
     });
 }
 
