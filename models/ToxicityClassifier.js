@@ -14,10 +14,12 @@ module.exports.ToxicityClassifier = sequelize.define('toxicityClassifier', {
     toxicityClassifierActions: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
     },
     toxicityThreshold: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0.5
     },
     identityAttackEnabled: {
         type: DataTypes.BOOLEAN,
@@ -127,5 +129,6 @@ module.exports.ToxicityClassifier = sequelize.define('toxicityClassifier', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

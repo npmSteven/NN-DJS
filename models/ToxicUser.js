@@ -46,5 +46,6 @@ module.exports.ToxicUser = sequelize.define('toxicUser', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

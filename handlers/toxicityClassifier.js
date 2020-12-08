@@ -2,7 +2,6 @@ const { v4 } = require('uuid');
 const toxicity = require('@tensorflow-models/toxicity');
 
 const { ToxicMessage } = require('../models/ToxicMessage');
-const config = require('../config');
 
 module.exports.classifyContent = async (message) => {
     try {
@@ -36,7 +35,6 @@ module.exports.classifyContent = async (message) => {
                 sexualExplicit: sexualExplicit.match,
                 threat: threat.match,
                 toxicity: toxicity.match,
-                createdAt: message.createdAt,
             });
         }
     } catch (error) {

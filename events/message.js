@@ -16,7 +16,6 @@ module.exports = async (client, message) => {
             channelId: message.channel.id,
             content: message.content,
             isEdited: false,
-            createdAt: `${message.createdAt}`,
         });
     
         await classifyContent(newMesssage);

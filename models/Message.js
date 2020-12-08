@@ -34,5 +34,6 @@ module.exports.Message = sequelize.define('message', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

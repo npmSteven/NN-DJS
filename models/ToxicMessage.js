@@ -35,5 +35,6 @@ module.exports.ToxicMessage = sequelize.define('toxicMessage', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

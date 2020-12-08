@@ -11,6 +11,10 @@ module.exports.Guild = sequelize.define('guild', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    adminGroupId: {
+        type: DataTypes.STRING,
+        defaultValue: null,
+    },
     commandChannelId: {
         type: DataTypes.STRING,
         defaultValue: null,
@@ -27,5 +31,6 @@ module.exports.Guild = sequelize.define('guild', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });
