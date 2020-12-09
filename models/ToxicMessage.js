@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const { sequelize } = require('../handlers/db');
 
 module.exports.ToxicMessage = sequelize.define('toxicMessage', {
@@ -35,6 +36,5 @@ module.exports.ToxicMessage = sequelize.define('toxicMessage', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

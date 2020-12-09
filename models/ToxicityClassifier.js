@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const { sequelize } = require('../handlers/db');
 
 module.exports.ToxicityClassifier = sequelize.define('toxicityClassifier', {
@@ -11,13 +12,8 @@ module.exports.ToxicityClassifier = sequelize.define('toxicityClassifier', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    toxicityClassifierActions: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
-    },
     toxicityThreshold: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: false,
         defaultValue: 0.5
     },
@@ -129,6 +125,5 @@ module.exports.ToxicityClassifier = sequelize.define('toxicityClassifier', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const { sequelize } = require('../handlers/db');
 
 module.exports.Message = sequelize.define('message', {
@@ -30,10 +31,10 @@ module.exports.Message = sequelize.define('message', {
     isEdited: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
+        defaultValue: false,
     },
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

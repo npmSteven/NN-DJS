@@ -1,5 +1,5 @@
 const { v4 } = require('uuid');
-
+const { readMessagesFromGuild } = require('../handlers/util');
 const { Guild } = require('../models/Guild');
 const { ToxicityClassifier } = require('../models/ToxicityClassifier');
 
@@ -8,9 +8,7 @@ module.exports = async (client, guild) => {
 
         await createTablesForSettings(guild.id);
 
-        await readMessagesForMessageUpdate(client, guild.id);
-        console.log('read messages');
-
+        await readMessagesFromGuild(client, guild.id);
     } catch (error) {
         console.error('ERROR - guildCreate.js', error);
     }
@@ -26,6 +24,7 @@ const createTablesForSettings = async (guildId) => {
         await Guild.create({
             id: v4(),
             guildId,
+            createdAt: `${new Date()}`,
         });
     
         const foundToxicityClassifier = await ToxicityClassifier.findOne({ where: { guildId } });
@@ -36,6 +35,7 @@ const createTablesForSettings = async (guildId) => {
         await ToxicityClassifier.create({
             id: v4(),
             guildId,
+            createdAt: `${new Date()}`,
         });
     } catch (error) {
         console.error('ERROR - createTablesForSettings()', error);

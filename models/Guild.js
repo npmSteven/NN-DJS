@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const { sequelize } = require('../handlers/db');
 
 module.exports.Guild = sequelize.define('guild', {
@@ -31,6 +32,5 @@ module.exports.Guild = sequelize.define('guild', {
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });

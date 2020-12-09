@@ -1,25 +1,30 @@
 const { v4 } = require('uuid');
 const { classifyContent } = require('../handlers/toxicityClassifier');
+const { Guild } = require('../models/Guild');
 
 const { Message } = require('../models/Message');
 
-module.exports = async (client, message) => {
+module.exports = async (client, userMessage) => {
     // Check if bot send a message
-    if (message.author.bot || !message.reactions.message.content) return null;
+    if (userMessage.author.bot || !userMessage.reactions.message.content) return null;
 
     try {
+        const guild = await Guild.findOne({ where: { guildId: userMessage.guild.id } });
+        if (!guild) return null;
+
         // Save message to db
         const newMesssage = await Message.create({
             id: v4(),
-            guildId: message.guild.id,
-            authorId: message.author.id,
-            authorMessageId: message.reactions.message.id,
-            channelId: message.channel.id,
-            content: message.reactions.message.content,
+            guildId: userMessage.guild.id,
+            authorId: userMessage.author.id,
+            authorMessageId: userMessage.reactions.message.id,
+            channelId: userMessage.channel.id,
+            content: userMessage.reactions.message.content,
             isEdited: true,
+            createdAt: `${new Date()}`,
         });
     
-        await classifyContent(newMesssage);
+        await classifyContent(newMesssage, userMessage);
     } catch (error) {
         console.error('ERROR - messageUpdate.js', error);
     }

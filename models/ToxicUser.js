@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+
 const { sequelize } = require('../handlers/db');
 
 module.exports.ToxicUser = sequelize.define('toxicUser', {
@@ -18,34 +19,40 @@ module.exports.ToxicUser = sequelize.define('toxicUser', {
     identityAttack: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     insult: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     obscene: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     severeToxicity: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     sexualExplicit: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     threat: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     toxicity: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        defaultValue: 0,
     },
     createdAt: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: `${new Date()}`
     }
 }, { createdAt: false, updatedAt: false });
